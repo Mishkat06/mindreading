@@ -1,0 +1,90 @@
+body {
+    background-image: url('https://drive.google.com/file/d/1bReIkXPYGKZDrU8SvCgTDF8YiNIxK_BH/view?usp=sharing');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed; /* Optional: if you want a fixed background image */
+}
+
+/* ... Rest of your styles ... */
+
+
+/* Custom Styles for Animations and Additional Responsiveness */
+#message {
+    font-weight: bold;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+#message.active {
+    opacity: 1;
+}
+
+/*glowing text (type anyting)*/
+@keyframes glowingText {
+    0% {
+        text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 20px #000, 0 0 25px #000;
+    }
+    50% {
+        text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000, 0 0 40px #000, 0 0 50px #000, 0 0 60px #000, 0 0 70px #000;
+    }
+    100% {
+        text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 20px #000, 0 0 25px #000;
+    }
+}
+
+.glowing-black-text {
+    animation: glowingText 4s infinite alternate;
+}
+
+
+/*-------------------------------------------------------------*/
+
+@keyframes slightGlowingBorder {
+    0% {
+        border-color: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+    50% {
+        border-color: rgba(0, 0, 0, 0.9);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+    }
+    100% {
+        border-color: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+}
+
+.slight-glowing-border {
+    animation: slightGlowingBorder 1s infinite alternate;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+/*-------------------------------------------------------------*/
+
+.transparent-glowing-button {
+    background: transparent;
+    border: none;
+    color: white;
+    text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 20px #000, 0 0 25px #000;
+    animation: glowingText 3s infinite alternate;
+}
+
+@keyframes glowingBorder {
+    0% {
+        border-color: black;
+        box-shadow: 0 0 5px black, 0 0 10px black;
+    }
+    50% {
+        border-color: white;
+        box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white, 0 0 20px white;
+    }
+    100% {
+        border-color: black;
+        box-shadow: 0 0 5px black, 0 0 10px black;
+    }
+}
+
+.glowing-border-animation {
+    animation: glowingBorder 5s infinite alternate;
+}

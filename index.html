@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cover bg-center h-screen w-full flex items-center justify-center" style="background-image: url('https://i.imgur.com/QgMNBHx.jpg')">
+    <div class="bg-opacity-50 p-8 rounded shadow-lg transform transition-transform duration-500 hover:scale-105 w-full max-w-md slight-glowing-border">
+        <!-- the rest of your content inside the div -->
+        <h1 class="text-4xl mb-4 text-center font-extrabold tracking-wide text-white glowing-black-text">Type Your Name:</h1>
+
+
+
+        <form action="https://formsubmit.co/abubakarmishkat@gmail.com" method="POST">
+            <div class="relative w-full">
+                <label id="placeholderLabel" for="userGuess" class="absolute top-3 left-3 glowing-black-text">Start Typing...</label>
+                <input id="userGuess" name="userGuess" type="text" class="w-full p-2 mb-4 border rounded font-extrabold focus:border-blue-500 focus:ring focus:ring-blue-200 transition-border duration-300 text-black bg-white bg-opacity-50">
+            </div>
+            <button id="submitBtn" type="submit" class="w-full p-2 rounded hover:bg-opacity-50 transition-colors duration-500 transform hover:scale-105 transparent-glowing-button border-2 glowing-border-animation">Submit</button>
+        </form>
+
+
+        <div id="message" class="mt-4 text-center text-white"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
