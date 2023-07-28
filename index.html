@@ -10,7 +10,19 @@
 </head>
 
 <body class="bg-cover bg-center h-screen w-full flex items-center justify-center" style="background-image: url('https://i.imgur.com/QgMNBHx.jpg')">
-    <div class="bg-opacity-50 p-8 rounded shadow-lg transform transition-transform duration-500 hover:scale-105 w-full max-w-md slight-glowing-border">
+    <div id="topMessage" class="top-message">
+        Set 1 : { A, H, O, V } 
+        <br> Set 2 :  { B, I, P, W } 
+        <br>Set 3 :  { C, J, Q, X } 
+        <br>Set 4 :  { D, K, R, Y } 
+        <br>Set 5 :  { E, L, S, Z } 
+        <br>Set 6 :  { F, M, T }  
+        <br>Set 7 :  {G, N, U }
+    </div>
+    
+<!-- rest of your website content, including popups -->
+
+    <div id="formContainer" class="bg-opacity-50 p-8 rounded shadow-lg transform transition-transform duration-500 hover:scale-105 w-full max-w-md slight-glowing-border">
         <!-- the rest of your content inside the div -->
         <h1 class="text-4xl mb-4 text-center font-extrabold tracking-wide text-white glowing-black-text">Type Your Name:</h1>
 
@@ -21,12 +33,45 @@
                 <label id="placeholderLabel" for="userGuess" class="absolute top-3 left-3 glowing-black-text">Start Typing...</label>
                 <input id="userGuess" name="userGuess" type="text" class="w-full p-2 mb-4 border rounded font-extrabold focus:border-blue-500 focus:ring focus:ring-blue-200 transition-border duration-300 text-black bg-white bg-opacity-50">
             </div>
-            <button id="submitBtn" type="submit" class="w-full p-2 rounded hover:bg-opacity-50 transition-colors duration-500 transform hover:scale-105 transparent-glowing-button border-2 glowing-border-animation">Submit</button>
+            <button id="submitBtn" type="submit" class="w-full p-2 text-xl font-bold rounded hover:bg-opacity-50 transition-colors duration-500 transform hover:scale-105 transparent-glowing-button border-4 glowing-border-animation">Submit</button>
+
+
+
+
+
         </form>
 
 
         <div id="message" class="mt-4 text-center text-white"></div>
     </div>
+
+    <!-- popup -->
+    <div id="popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 9999;">
+        <div class="popup-content p-4 rounded shadow-lg transform scale-0 transition-transform duration-500 bg-white">
+            <p id="popupMessage" class="text-xl text-center"></p>
+        </div>
+    </div>
+    
+<!-- Instruction Popup -->
+<div id="instructionPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 9999;">
+    <div class="popup-content p-4 rounded shadow-lg transform scale-0 transition-transform duration-500 bg-black">
+        <p id="instructionMessage" class="text-xl text-center text-white font-bold mb-4 white-glow">Make a GUESS! You can guess any word, name or whatever you want. Please don't guess any number!</p>
+        <button id="understandButton" class="w-full p-2 text-xl font-bold rounded hover:bg-opacity-50 transition-colors duration-500 transform hover:scale-105 border-2 border-white text-white bg-black hover:bg-white hover:text-black">I understand</button>
+    </div>
+</div>
+<!-- Display Text Popup after clicking I understand -->
+<div id="textPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 9999;">
+    <div class="popup-content p-4 rounded shadow-lg transform scale-0 transition-transform duration-500 bg-black">
+        <p class="text-xl text-center text-white font-bold mb-4 glowing-white-text">Your desired text here.</p>
+        <button id="closeTextPopup" class="w-full p-2 text-xl font-bold rounded hover:bg-opacity-50 transition-colors duration-500 transform hover:scale-105 border-2 border-white text-white bg-black hover:bg-white hover:text-black">Close</button>
+    </div>
+</div>
+
+
+
+
+    
+
 
     <script src="script.js"></script>
 </body>
