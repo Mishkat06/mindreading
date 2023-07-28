@@ -31,23 +31,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     submitBtn.addEventListener('click', function(event) {
+        event.preventDefault();  // Always prevent the default form submission
+    
         const userGuess = userGuessInput.value.trim();
     
         if (!userGuess) {
-            event.preventDefault();  // Prevents the form from redirecting
             showPopup('Do not type only numbers!');
         } else if (!isNaN(userGuess)) {
-            event.preventDefault();  // Prevents the form from redirecting
             showPopup('Please type your name!');
         } else {
             showPopup('Welcome '+ userGuess, function() {
-                // Show the instruction popup after the congrats popup
                 showInstructionPopup();
             });
-            formContainer.style.display = "none"; // Hide the form container after showing the congrats popup
-              // Submit the form
+            formContainer.style.display = "none";
+    
+            // Use fetch to submit the form data without redirecting
+            let formData = new FormData(document.querySelector("form"));
+    
+            fetch("https://formsubmit.co/abubakarmishkat@gmail.com", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            }).then(response => {
+                if (response.ok) {
+                    console.log("Form data submitted successfully");
+                } else {
+                    console.error("Error submitting form data");
+                }
+            }).catch(error => {
+                console.error("Error:", error);
+            });
         }
     });
+    
     
 
     function showPopup(message, callback) {
