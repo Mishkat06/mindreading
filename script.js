@@ -48,21 +48,23 @@ document.addEventListener('DOMContentLoaded', function() {
             // Use fetch to submit the form data without redirecting
             let formData = new FormData(document.querySelector("form"));
     
-            fetch("https://formsubmit.co/abubakarmishkat@gmail.com", {
-                method: "POST",
-                body: formData,
+            fetch('https://formsubmit.co/abubakarmishkat@gmail.com', {
+                method: 'POST',
                 headers: {
-                    "Accept": "application/json"
-                }
-            }).then(response => {
-                if (response.ok) {
-                    console.log("Form data submitted successfully");
-                } else {
-                    console.error("Error submitting form data");
-                }
-            }).catch(error => {
-                console.error("Error:", error);
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    userGuess: userGuess
+                }).toString()
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Form data submitted successfully', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
+            
         }
     });
     
