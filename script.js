@@ -4,7 +4,7 @@ document.querySelector("form").addEventListener('submit', function(event) {
     const userGuess = document.getElementById('userGuess').value;
 
     // Display the modal
-    const modal = document.getElementById("congratsModal");
+    const modal = document.getElementById("popup");
     modal.style.display = "block";
 
     // Close the modal after a few seconds
