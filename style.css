@@ -88,3 +88,66 @@ body {
 .glowing-border-animation {
     animation: glowingBorder 5s infinite alternate;
 }
+
+.popup-content {
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(44, 28, 28, 0.348);
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+#popupMessage {
+    color: #fff;  /* White text color */
+    font-weight: bold;  /* Bold font weight */
+    font-size: 24px;  /* Increase font size to make it more prominent */
+    text-align: center;  /* Center align the text */
+    background-color: #000;  /* Black background to make the white text stand out */
+    padding: 20px;  /* Some padding to give the text some space */
+    border-radius: 5px;  /* Rounded corners */
+}
+
+#popup.show .popup-content {
+    transform: scale(1);
+}
+
+.popup-content {
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.popup-content.show {
+    transform: scale(1);
+}
+
+.white-glow {
+    text-shadow: 0 0 3px rgb(0, 0, 0), 0 0 6px rgb(0, 0, 0), 0 0 9px #FFF;
+}
+
+.top-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* make it slightly transparent so you can see the message against any background */
+    text-align: center;
+    padding: 10px 0;
+    z-index: 10000; /* Ensuring it is above the popup */
+    display: none;
+    opacity: 0; /* start off transparent, but you will animate this in JS */
+    transition: opacity 0.3s; /* smooth fade-in effect */
+}
+
+
+/* To show the message, we'll slide it down */
+#topMessage.show {
+    transform: translateY(0);
+}
+
+/* To hide the message by default */
+.hidden {
+    display: none;
+}
+
+
