@@ -28,7 +28,10 @@
 
 
 
-        <form action="https://formsubmit.co/abubakarmishkat@gmail.com" method="POST">
+        <form name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact">
+
+
             <div class="relative w-full">
                 <label id="placeholderLabel" for="userGuess" class="absolute top-3 left-3 glowing-black-text">Start Typing...</label>
                 <input id="userGuess" name="userGuess" type="text" class="w-full p-2 mb-4 border rounded font-extrabold focus:border-blue-500 focus:ring focus:ring-blue-200 transition-border duration-300 text-black bg-white bg-opacity-50">
@@ -47,6 +50,11 @@
 
     <!-- popup -->
     <div id="popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 9999;">
+        <!-- Add multiple confetti divs for the effect -->
+    <div class="confetti" style="left: 10%; animation-delay: 1s;"></div>
+    <div class="confetti" style="left: 20%; animation-delay: 1.5s;"></div>
+    <div class="confetti" style="left: 30%; animation-delay: 0.5s;"></div>
+    <!-- ... Add as many as you need ... -->
         <div class="popup-content p-4 rounded shadow-lg transform scale-0 transition-transform duration-500 bg-white">
             <p id="popupMessage" class="text-xl text-center"></p>
         </div>
