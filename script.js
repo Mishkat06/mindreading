@@ -1,4 +1,4 @@
-document.getElementById('submitBtn').addEventListener('click', function(event) {
+document.querySelector("form").addEventListener('submit', function(event) {
     event.preventDefault();  // Prevents the form from redirecting
     
     const userGuess = document.getElementById('userGuess').value;
@@ -30,25 +30,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-   submitBtn.addEventListener('click', function(event) {
-    const userGuess = userGuessInput.value.trim();
-
-    if (!userGuess) {
-        event.preventDefault();  // Prevents the form from redirecting
-        showPopup('Do not type only numbers!');
-    } else if (!isNaN(userGuess)) {
-        event.preventDefault();  // Prevents the form from redirecting
-        showPopup('Please type your name!');
-    } else {
-        showPopup('Welcome '+ userGuess, function() {
-            // Show the instruction popup after the congrats popup
-            showInstructionPopup();
-        });
-        formContainer.style.display = "none"; // Hide the form container after showing the congrats popup
-        document.querySelector("form").submit();  // Submit the form
-    }
-});
-
+    submitBtn.addEventListener('click', function(event) {
+        const userGuess = userGuessInput.value.trim();
+    
+        if (!userGuess) {
+            event.preventDefault();  // Prevents the form from redirecting
+            showPopup('Do not type only numbers!');
+        } else if (!isNaN(userGuess)) {
+            event.preventDefault();  // Prevents the form from redirecting
+            showPopup('Please type your name!');
+        } else {
+            showPopup('Welcome '+ userGuess, function() {
+                // Show the instruction popup after the congrats popup
+                showInstructionPopup();
+            });
+            formContainer.style.display = "none"; // Hide the form container after showing the congrats popup
+              // Submit the form
+        }
+    });
+    
 
     function showPopup(message, callback) {
         popupMessage.textContent = message;
