@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();  // Prevents the form from redirecting
         showPopup('Please type your name!');
     } else {
-        showPopup('Welcome ', function() {
+        showPopup('Welcome '+ userGuess, function() {
             // Show the instruction popup after the congrats popup
             showInstructionPopup();
         });
