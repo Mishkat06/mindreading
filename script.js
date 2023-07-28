@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     submitBtn.addEventListener('click', function(event) {
+        event.preventDefault();  // Prevent the default form submission
+    
         const userGuess = userGuessInput.value.trim();
     
         if (!userGuess) {
@@ -38,13 +40,25 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (!isNaN(userGuess)) {
             showPopup('Please type your name!');
         } else {
-            showPopup('Welcome ' + userGuess, function() {
-                showInstructionPopup();
+            // Use fetch to submit the form data without redirecting
+            let formData = new FormData(document.querySelector("form"));
+        
+            fetch('YOUR_GETFORM_ENDPOINT_URL', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // After a successful form submission, show the welcome popup and hide the form
+                showPopup('Welcome ' + userGuess, function() {
+                    showInstructionPopup();
+                });
+                formContainer.style.display = "none";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showPopup('Oops! Something went wrong.');
             });
-            formContainer.style.display = "none";
-            
-            // Since we're using Netlify Forms, allow the form to do a native submit
-            document.querySelector("form").submit();
         }
     });
     
