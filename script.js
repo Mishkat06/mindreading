@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Use fetch to submit the form data without redirecting
             let formData = new FormData(document.querySelector("form"));
         
-            fetch('YOUR_GETFORM_ENDPOINT_URL', {
+            fetch('https://getform.io/f/bd736db5-0885-4faf-b840-e0520db280ca', {
                 method: 'POST',
                 body: formData
             })
