@@ -43,22 +43,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Use fetch to submit the form data without redirecting
             let formData = new FormData(document.querySelector("form"));
         
-            fetch('https://getform.io/f/bd736db5-0885-4faf-b840-e0520db280ca', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // After a successful form submission, show the welcome popup and hide the form
-                showPopup('Welcome ' + userGuess, function() {
-                    showInstructionPopup();
-                });
-                formContainer.style.display = "none";
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showPopup('Oops! Something went wrong.');
-            });
+           fetch('https://getform.io/f/bd736db5-0885-4faf-b840-e0520db280ca', {
+    method: 'POST',
+    body: formData
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');  // or use response.statusText
+    }
+    return response.json();
+})
+.then(data => {
+    showPopup('Welcome ' + userGuess, function() {
+        showInstructionPopup();
+    });
+    formContainer.style.display = "none";
+})
+.catch(error => {
+    console.error('Error:', error);
+    showPopup('Oops! ' + error.message);
+});
+
         }
     });
     
