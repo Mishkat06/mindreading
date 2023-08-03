@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Start the fetch operation here
             fetch('https://formspree.io/f/mnqkqkpe', {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
