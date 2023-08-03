@@ -1,18 +1,3 @@
-document.querySelector("form").addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevents the form from redirecting
-    
-    const userGuess = document.getElementById('userGuess').value;
-
-    // Display the modal
-    const modal = document.getElementById("popup");
-    modal.style.display = "block";
-
-    // Close the modal after a few seconds
-    setTimeout(() => {
-        modal.style.display = "none";
-    }, 2000);
-});
-
 document.addEventListener('DOMContentLoaded', function() {
 
     const userGuessInput = document.getElementById("userGuess");
@@ -30,8 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    const guessForm = document.getElementById("guessForm");
     submitBtn.addEventListener('click', function(event) {
-        event.preventDefault();  // Prevent the default form submission
+        event.preventDefault();
     
         const userGuess = userGuessInput.value.trim();
     
@@ -40,51 +26,54 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (!isNaN(userGuess)) {
             showPopup('Please type your name!');
         } else {
-            // Use fetch to submit the form data without redirecting
-            let formData = new FormData(document.querySelector("form"));
-        
-           fetch('https://getform.io/f/bd736db5-0885-4faf-b840-e0520db280ca', {
-    method: 'POST',
-    body: formData
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok');  // or use response.statusText
-    }
-    return response.json();
-})
-.then(data => {
-    showPopup('Welcome ' + userGuess, function() {
-        showInstructionPopup();
-    });
-    formContainer.style.display = "none";
-})
-.catch(error => {
-    console.error('Error:', error);
-    showPopup('Oops! ' + error.message);
-});
-
+            // Start the fetch operation here
+            fetch('https://formspree.io/f/mnqkqkpe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `userGuess=${userGuess}`
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to submit data');
+                }
+            })
+            .then(data => {
+                // If the submission was successful, show the welcome popup.
+                showPopup('Welcome ' + userGuess, function() {
+                    showInstructionPopup();
+                });
+                formContainer.style.display = "none";
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error.message);
+                // You can show another popup here indicating the error if needed.
+            });
         }
     });
     
     
-    
-
     function showPopup(message, callback) {
         popupMessage.textContent = message;
         popup.style.display = "flex";
+        
         setTimeout(() => {
-            popup.classList.add("show");
-        }, 10); // Wait 10ms to ensure that the display style has changed
+            popup.querySelector('.popup-content').classList.add('show');
+        }, 10); 
     
         setTimeout(() => {
-            popup.classList.remove("show");
-            popup.style.display = "none";
-            if (callback) {
-                callback();
-            }
-        }, 2000); // Hide the popup after 3 seconds
+            popup.querySelector('.popup-content').classList.remove('show');
+            setTimeout(() => {
+                popup.style.display = "none";
+                if(callback) callback();  // Call the callback function if provided
+            }, 500); // Wait for the transition to complete
+        }, 3000); // Display the popup for 3 seconds
     }
+    
+    
     
     function showInstructionPopup() {
         const instructionPopup = document.getElementById("instructionPopup");
@@ -99,8 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
             instructionPopup.querySelector('.popup-content').classList.add('show');
         }, 10); 
     }
-    
-    
     
     document.getElementById('understandButton').addEventListener('click', function() {
         const instructionPopup = document.getElementById("instructionPopup");
@@ -124,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 200); // Fade in after 200ms
     });
     
-    
     document.getElementById('closeTextPopup').addEventListener('click', function() {
         const textPopup = document.getElementById("textPopup");
         
@@ -133,8 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         textPopup.querySelector('.popup-content').classList.remove('show');
     });
     
-    
-    
-    
-    
 });
+
+
+
