@@ -113,13 +113,17 @@ body {
 }
 
 .popup-content {
-    transform: scale(0);
-    transition: transform 0.3s ease-in-out;
+    
+    opacity: 1; /* default it to hidden */
+    transform: scale(0.8); /* slightly reduced size to accompany fade-in for better effect */
+    transition: opacity 0.5s ease, transform 0.3s ease;
 }
+
 
 .popup-content.show {
     transform: scale(1);
 }
+
 
 .white-glow {
     text-shadow: 0 0 3px rgb(0, 0, 0), 0 0 6px rgb(0, 0, 0), 0 0 9px #FFF;
@@ -135,7 +139,7 @@ body {
     padding: 10px 0;
     z-index: 10000; /* Ensuring it is above the popup */
     display: none;
-    opacity: 0; /* start off transparent, but you will animate this in JS */
+    opacity: 1; /* start off transparent, but you will animate this in JS */
     transition: opacity 0.3s; /* smooth fade-in effect */
 }
 
@@ -177,4 +181,71 @@ body {
 .confetti:nth-child(3n) {
     background-color: #3366ff;
     animation-duration: 7s;
+}
+/*=------------------------------*/
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.popup-content.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+.popup-content.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+
+/* Fancy Popup Transition */
+@keyframes fancyPopup {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.fancy-popup-show {
+    animation: fancyPopup 0.5s forwards;
+}
+
+
+.set-button {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly white background */
+    padding: 5px 10px;  /* Padding for a more button-like appearance */
+    border: 1px solid black;
+    border-radius: 3px;  /* Slightly rounded corners */
+    cursor: pointer;  /* Hand cursor on hover for better UX */
+    transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
+    font-size: 1rem;  /* Font size */
+    color: #fff;  /* White text color */
+    text-align: center;  /* Center the text */
+    display: inline-block;  /* Inline-block for layout purposes */
+}
+
+.set-button:hover {
+    background-color: rgba(255, 255, 255, 0.4); /* More white on hover */
+}
+.set-button:active {
+    background-color: rgba(0, 123, 255, 0.5); /* Semi-transparent blue background */
+    color: #fff; /* Keeping text color white */
+    box-shadow: inset 0 0 5px rgba(0, 123, 255, 0.7); /* Inset shadow for a pressed effect */
 }
